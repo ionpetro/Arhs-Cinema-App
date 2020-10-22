@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { checkPasswords } from 'src/app/shared/checkPasswords';
 
 @Component({
   selector: 'app-register',
@@ -12,33 +18,37 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   submitted = false;
   error: string;
-  registerForm = new FormGroup({
-    firstName: new FormControl('', {
-      validators: Validators.required,
-    }),
-    lastName: new FormControl('', {
-      validators: Validators.required,
-    }),
-    username: new FormControl('', {
-      validators: Validators.required,
-    }),
-    password: new FormControl('', {
-      validators: Validators.required,
-    }),
-  });
+  registerForm: FormGroup;
+
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {
+    // if (this.userService.currentUserValue) {
+    //   this.router.navigate(['/']);
+    // }
+  }
 
   // convenience getter for easy access to form fields
   get f() {
     return this.registerForm.controls;
   }
 
-  constructor(private userService: UserService, private router: Router) {
-    // if (this.userService.currentUserValue) {
-    //   this.router.navigate(['/']);
-    // }
+  ngOnInit() {
+    this.registerForm = this.formBuilder.group(
+      {
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        username: ['', Validators.required],
+        password: ['', Validators.required],
+        confirmPassword: ['', Validators.required],
+      },
+      {
+        validator: checkPasswords('password', 'confirmPassword'),
+      }
+    );
   }
-
-  ngOnInit() {}
 
   onSubmit() {
     this.submitted = true;

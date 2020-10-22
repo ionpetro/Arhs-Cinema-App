@@ -18,7 +18,12 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private userService: UserService
-  ) {}
+  ) {
+    // redirect to home if already logged in
+    if (this.userService.userValue) {
+      this.router.navigate(['/']);
+    }
+  }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -58,7 +63,6 @@ export class LoginComponent implements OnInit {
         },
         (error) => {
           this.error = error.error.message;
-          console.log(this.error);
           this.loading = false;
         }
       );

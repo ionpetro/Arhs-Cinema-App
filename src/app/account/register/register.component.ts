@@ -25,9 +25,10 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder
   ) {
-    // if (this.userService.currentUserValue) {
-    //   this.router.navigate(['/']);
-    // }
+    // redirect to home if already logged in
+    if (this.userService.userValue) {
+      this.router.navigate(['/']);
+    }
   }
 
   // convenience getter for easy access to form fields

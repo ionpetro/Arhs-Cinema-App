@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
-import { map, tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -20,20 +20,32 @@ export class UserService {
     this.user = this.userSubject.asObservable();
   }
 
-  login(username, password, remember) {
+  public get userValue(): User {
+    // console.log(this.userSubject.value);
+    return this.userSubject.value;
+  }
+
+  login(username: string, password: string, remember: boolean): any {
     return this.http
-      .post<User>(`${environment.apiUrl}/users/signin`, {
+      .post<any>(`${environment.apiUrl}/users/signin`, {
         username,
         password,
       })
       .pipe(
-        map((user) => {
+        map(({ user }) => {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           remember ? localStorage.setItem('user', JSON.stringify(user)) : '';
           this.userSubject.next(user);
           return user;
         })
       );
+  }
+
+  logout() {
+    // remove user from local storage and set current user to null
+    localStorage.removeItem('user');
+    this.userSubject.next(null);
+    this.router.navigate(['/login']);
   }
 
   register(

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="user">
   <a class="navbar-brand" routerLink="/">Arηs Cinema</a>
   <button
     class="navbar-toggler"
@@ -39,7 +39,7 @@
           aria-labelledby="navbarDropdown"
         >
           <p class="dropdown-item">Logged in as {{ user.firstname }}</p>
-          <a class="dropdown-item" href="#">Profile</a>
+          <a class="dropdown-item" routerLink="/profile" href="#">Profile</a>
           <div class="dropdown-divider"></div>
           <a (click)="logout()" class="dropdown-item" href="#"
             ><strong>Logout</strong></a

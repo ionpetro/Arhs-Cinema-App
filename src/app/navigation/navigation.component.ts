@@ -9,7 +9,7 @@ import { UserService } from '../services/user.service';
 })
 export class NavigationComponent implements OnInit {
   constructor(private userService: UserService) {
-    this.user = this.userService.userValue;
+    this.userService.user.subscribe((x) => (this.user = x));
   }
 
   user: User;

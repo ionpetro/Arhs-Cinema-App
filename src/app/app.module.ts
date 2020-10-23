@@ -9,6 +9,7 @@ import { RegisterComponent } from './account/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,

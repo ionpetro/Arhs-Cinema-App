@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" routerLink="/">Arηs Cinema</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#">All Movies</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Favourite Movies</a>
+      </li>
+    </ul>
+    <div>
+      <div class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          >Profile
+        </a>
+        <div
+          style="left: -100px !important"
+          class="dropdown-menu"
+          aria-labelledby="navbarDropdown"
+        >
+          <p class="dropdown-item">Logged in as {{ user.firstname }}</p>
+          <a class="dropdown-item" href="#">Profile</a>
+          <div class="dropdown-divider"></div>
+          <a (click)="logout()" class="dropdown-item" href="#"
+            ><strong>Logout</strong></a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

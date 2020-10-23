@@ -9,10 +9,10 @@
           formControlName="firstname"
           class="form-control"
           required
-          [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
+          [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }"
         />
-        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-          <div *ngIf="f.firstName.errors.required">Firstname is required</div>
+        <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+          <div *ngIf="f.firstname.errors.required">Firstname is required</div>
         </div>
       </div>
       <div class="form-group">
@@ -21,10 +21,10 @@
           type="text"
           formControlName="lastname"
           class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"
+          [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }"
         />
-        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-          <div *ngIf="f.lastName.errors.required">Lastname is required</div>
+        <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+          <div *ngIf="f.lastname.errors.required">Lastname is required</div>
         </div>
       </div>
 
@@ -42,7 +42,9 @@
       </div>
 
       <div class="form-group">
-        <label for="password">Password</label>
+        <label for="password"
+          >Password <small>(leave blank to keep the same)</small></label
+        >
         <input
           type="password"
           formControlName="password"
@@ -74,7 +76,7 @@
           </div>
         </div>
       </div>
-      <button class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-primary">Save</button>
       &nbsp;
       <button routerLink="/profile" class="btn btn-secondary">Cancel</button>
       <div *ngIf="error" class="alert alert-danger mt-3 mb-0">

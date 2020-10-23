@@ -28,18 +28,27 @@ export class UserService {
   }
 
   updateUser(updatedUser: any): Observable<User> {
-    const updatedCleanUser = this.clean(updatedUser);
+    const updatedCleanUser = this.keepChanges(updatedUser);
     console.log(updatedCleanUser);
     return this.http
       .put<User>(`${environment.apiUrl}/users`, updatedCleanUser as User)
-      .pipe();
-    // TODO
+      .pipe(
+        map((x) => {
+          this.updateLocalStorage(x);
+          this.authService.userSubject.next(x);
+          return x;
+        })
+      );
   }
 
   // remove confirmPassword and password if blank
-  clean(obj: User): User {
-    for (var propName in obj) {
+  // and keep only the changes that user made
+  keepChanges(obj: User): User {
+    let user = this.authService.userValue;
+
+    for (let propName in obj) {
       if (
+        obj[propName] === user[propName] ||
         propName === 'confirmPassword' ||
         obj[propName] === '' ||
         obj[propName] === undefined ||
@@ -49,5 +58,14 @@ export class UserService {
       }
     }
     return obj as User;
+  }
+
+  // I used checked remember me, on update we should update the localStorage
+  updateLocalStorage(user: User) {
+    if (localStorage.getItem('user')) {
+      let token = JSON.parse(localStorage.getItem('user')).jwt;
+      let obj = { user: user, jwt: token };
+      localStorage.setItem('user', JSON.stringify(obj));
+    }
   }
 }

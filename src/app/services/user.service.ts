@@ -26,4 +26,28 @@ export class UserService {
       .delete<any>(`${environment.apiUrl}/users`)
       .pipe(map(() => this.authService.logout()));
   }
+
+  updateUser(updatedUser: any): Observable<User> {
+    const updatedCleanUser = this.clean(updatedUser);
+    console.log(updatedCleanUser);
+    return this.http
+      .put<User>(`${environment.apiUrl}/users`, updatedCleanUser as User)
+      .pipe();
+    // TODO
+  }
+
+  // remove confirmPassword and password if blank
+  clean(obj: User): User {
+    for (var propName in obj) {
+      if (
+        propName === 'confirmPassword' ||
+        obj[propName] === '' ||
+        obj[propName] === undefined ||
+        obj[propName] === null
+      ) {
+        delete obj[propName];
+      }
+    }
+    return obj as User;
+  }
 }

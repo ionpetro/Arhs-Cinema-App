@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { checkPasswords } from 'src/app/shared/checkPasswords';
@@ -21,15 +21,10 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
   constructor(
-    private userService: UserService,
+    private authService: AuthService,
     private router: Router,
     private formBuilder: FormBuilder
-  ) {
-    // redirect to home if already logged in
-    if (this.userService.userValue) {
-      this.router.navigate(['/']);
-    }
-  }
+  ) {}
 
   // convenience getter for easy access to form fields
   get f() {
@@ -58,7 +53,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    this.userService
+    this.authService
       .register(
         this.f.firstName.value,
         this.f.lastName.value,

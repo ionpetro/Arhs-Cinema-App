@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
-import { UserService } from '../services/user.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-navigation',
@@ -8,8 +8,8 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit {
-  constructor(private userService: UserService) {
-    this.userService.user.subscribe((x) => (this.user = x));
+  constructor(private authService: AuthService) {
+    this.authService.user.subscribe((x) => (this.user = x));
   }
 
   user: User;
@@ -17,6 +17,6 @@ export class NavigationComponent implements OnInit {
   ngOnInit(): void {}
 
   logout() {
-    this.userService.logout();
+    this.authService.logout();
   }
 }

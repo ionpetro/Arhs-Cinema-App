@@ -8,18 +8,18 @@ import {
 import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { UserService } from 'src/app/services/user.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-  constructor(private userService: UserService) {}
+  constructor(private authService: AuthService) {}
 
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const user = this.userService.userValue;
-    const token = this.userService.token;
+    const user = this.authService.userValue;
+    const token = this.authService.token;
     const isLoggedIn = user && token;
     const isApiUrl = request.url.startsWith(environment.apiUrl);
 

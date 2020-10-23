@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class AuthService {
   private userSubject: BehaviorSubject<User>;
   public user: Observable<User>;
   public token: string;

@@ -4,9 +4,7 @@
     <p>Firstname: {{ currentUser.firstname }}</p>
     <p>Lastname: {{ currentUser.lastname }}</p>
     <p>Username: {{ currentUser.username }}</p>
-    <!-- <a routerLink="edit/{{ user.id }}" class="btn btn-sm btn-primary mr-1"
-      >Edit</a
-    > -->
+    <a routerLink="profile/edit/" class="btn btn-sm btn-primary mr-1">Edit</a>
     <button
       (click)="deleteUser()"
       class="btn btn-sm btn-danger btn-delete-user"

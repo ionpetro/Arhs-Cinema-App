@@ -5,11 +5,11 @@ import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-profile-details',
-  templateUrl: './profile-details.component.html',
-  styleUrls: ['./profile-details.component.scss'],
+  selector: 'app-details',
+  templateUrl: './details.component.html',
+  styleUrls: ['./details.component.scss'],
 })
-export class ProfileDetailsComponent implements OnInit {
+export class DetailsComponent implements OnInit {
   user: Observable<User>;
   currentUser: User;
 

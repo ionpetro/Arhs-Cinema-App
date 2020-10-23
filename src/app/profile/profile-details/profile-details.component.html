@@ -1,1 +1,17 @@
-<p>profile-details works!</p>
+<div class="container" style="margin: 5em">
+  <h1>Profile</h1>
+  <div *ngIf="currentUser">
+    <p>Firstname: {{ currentUser.firstname }}</p>
+    <p>Lastname: {{ currentUser.lastname }}</p>
+    <p>Username: {{ currentUser.username }}</p>
+    <!-- <a routerLink="edit/{{ user.id }}" class="btn btn-sm btn-primary mr-1"
+      >Edit</a
+    > -->
+    <button
+      (click)="deleteUser()"
+      class="btn btn-sm btn-danger btn-delete-user"
+    >
+      <span>Delete</span>
+    </button>
+  </div>
+</div>

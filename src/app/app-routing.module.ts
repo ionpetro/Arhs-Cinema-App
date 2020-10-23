@@ -10,7 +10,7 @@ const profileModule = () =>
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'profile', loadChildren: profileModule },
+  { path: 'profile', loadChildren: profileModule, canActivate: [AuthGuard] },
   { path: 'account', loadChildren: accountModule },
 
   // otherwise redirect to home

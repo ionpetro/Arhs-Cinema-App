@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -12,11 +12,17 @@ import { HttpClient } from '@angular/common/http';
 export class UserService {
   private userSubject: BehaviorSubject<User>;
   public user: Observable<User>;
+  public token: string;
 
   constructor(private router: Router, private http: HttpClient) {
     this.userSubject = new BehaviorSubject<User>(
-      JSON.parse(localStorage.getItem('user'))
+      localStorage.getItem('user')
+        ? JSON.parse(localStorage.getItem('user')).user
+        : null
     );
+    if (localStorage.getItem('user')) {
+      this.token = JSON.parse(localStorage.getItem('user')).jwt;
+    }
     this.user = this.userSubject.asObservable();
   }
 
@@ -32,11 +38,14 @@ export class UserService {
         password,
       })
       .pipe(
-        map(({ user }) => {
+        map((userObject) => {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          remember ? localStorage.setItem('user', JSON.stringify(user)) : '';
-          this.userSubject.next(user);
-          return user;
+          remember
+            ? localStorage.setItem('user', JSON.stringify(userObject))
+            : '';
+          this.userSubject.next(userObject.user);
+          this.token = userObject.jwt;
+          return userObject;
         })
       );
   }

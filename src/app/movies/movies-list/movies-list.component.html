@@ -23,19 +23,10 @@
   </button>
   <br />
   <br />
-  <ul>
-    <li *ngFor="let movie of filteredMovies">
-      {{ movie.title }}
-      <button routerLink="{{ movie.id }}" class="btn btn-sm btn-primary mr-1">
-        Update
-      </button>
-      &nbsp;
-      <button
-        class="btn btn-sm btn-danger btn-delete-user"
-        (click)="deleteMovie(movie)"
-      >
-        Delete
-      </button>
-    </li>
-  </ul>
+  <div *ngFor="let movie of filteredMovies">
+    <app-movie-card
+      (delete)="deleteMovie(movie)"
+      [movie]="movie"
+    ></app-movie-card>
+  </div>
 </div>

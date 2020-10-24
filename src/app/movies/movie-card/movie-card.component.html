@@ -1,1 +1,8 @@
-<p>movie-card works!</p>
+{{ movie.title }}
+<button routerLink="{{ movie.id }}" class="btn btn-sm btn-primary mr-1">
+  Update
+</button>
+&nbsp;
+<button class="btn btn-sm btn-danger btn-delete-user" (click)="onButtonClick()">
+  Delete
+</button>

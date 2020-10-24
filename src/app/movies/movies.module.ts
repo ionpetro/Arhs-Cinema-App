@@ -7,6 +7,7 @@ import { MovieDetailsComponent } from './movies-details/movie-details.component'
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MoviePreviewComponent } from './movie-preview/movie-preview.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
     MoviesListComponent,
     MovieDetailsComponent,
     MovieCardComponent,
+    MoviePreviewComponent,
   ],
   imports: [
     CommonModule,

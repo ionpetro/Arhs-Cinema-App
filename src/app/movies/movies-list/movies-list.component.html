@@ -1,7 +1,24 @@
 <div class="container" style="margin: 3em; text-align: center">
   <h1>All Movies</h1>
   <app-search></app-search> &nbsp;
-  <button routerLink="new">Add</button>
-
-  <app-movie-card></app-movie-card>
+  <button routerLink="new" class="field button floating-add-button is-primary">
+    + Add
+  </button>
+  <br />
+  <br />
+  <ul>
+    <li *ngFor="let movie of currentMovies">
+      {{ movie.title }}
+      <button routerLink="{{ movie.id }}" class="btn btn-sm btn-primary mr-1">
+        Update
+      </button>
+      &nbsp;
+      <button
+        class="btn btn-sm btn-danger btn-delete-user"
+        (click)="deleteMovie(movie)"
+      >
+        Delete
+      </button>
+    </li>
+  </ul>
 </div>

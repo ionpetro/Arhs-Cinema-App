@@ -9,19 +9,32 @@ import { MoviesService } from 'src/app/services/movies.service';
   styleUrls: ['./movies-list.component.scss'],
 })
 export class MoviesListComponent implements OnInit {
-  movies: Observable<Movie[]>;
-  currentMovies: Movie[];
+  moviesObservable: Observable<Movie[]>;
+  movies: Movie[];
+  filteredMovies: Movie[];
+
   constructor(private moviesService: MoviesService) {}
 
   ngOnInit(): void {
-    this.movies = this.moviesService.getMovies();
-    this.movies.subscribe((movies) => (this.currentMovies = movies));
+    this.moviesObservable = this.moviesService.getMovies();
+    this.moviesObservable.subscribe((movies) => {
+      this.movies = movies;
+      this.filteredMovies = movies;
+    });
   }
 
   deleteMovie(movie: Movie) {
     this.moviesService.deleteMovie(movie.id).subscribe((movie) => {
       // update current Movies list
-      this.currentMovies = this.currentMovies.filter((x) => x.id !== movie.id);
+      this.movies = this.movies.filter((x) => x.id !== movie.id);
+      this.filteredMovies = this.movies;
     });
+  }
+
+  filter(query: string) {
+    query = query.toLowerCase().trim();
+    this.filteredMovies = this.movies.filter((movie) =>
+      movie.title.includes(query)
+    );
   }
 }

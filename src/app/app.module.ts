@@ -8,7 +8,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { NavigationComponent } from './navigation/navigation.component';
-import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, NavigationComponent],

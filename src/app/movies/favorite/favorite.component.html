@@ -1,12 +1,32 @@
-<div
-  style="margin: 3em; text-align: center"
-  *ngFor="let favoriteMovie of favoriteMovies"
-  class="container"
->
-  <app-movie-card
-    routerLink="../{{ favoriteMovie.id }}"
-    [movie]="favoriteMovie"
-    [favorite]="true"
-    (deleteFavorite)="deleteFavorite(favoriteMovie)"
-  ></app-movie-card>
+<div class="container" style="margin: 3em; text-align: center">
+  <h1>Favorite Movies</h1>
+  <div class="search-bar-container">
+    <div class="field">
+      <p class="control has-icons-left">
+        <input
+          #filterInput
+          (keyup)="filter($event.target.value)"
+          class="input"
+          type="text"
+          placeholder="Filter"
+        />
+        <span class="icon is-small is-left">
+          <i class="fas fa-search"></i>
+        </span>
+      </p>
+    </div>
+  </div>
+
+  <div
+    style="margin: 3em; text-align: center"
+    *ngFor="let favoriteMovie of filteredMovies"
+    class="container"
+  >
+    <app-movie-card
+      routerLink="../{{ favoriteMovie.id }}"
+      [movie]="favoriteMovie"
+      [favorite]="true"
+      (deleteFavorite)="deleteFavorite(favoriteMovie)"
+    ></app-movie-card>
+  </div>
 </div>

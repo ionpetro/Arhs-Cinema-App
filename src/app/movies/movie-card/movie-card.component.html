@@ -1,13 +1,15 @@
 {{ movie.title }}
-<button routerLink="edit/{{ movie.id }}" class="btn btn-sm btn-primary mr-1">
-  Update
-</button>
-<button
-  (click)="onDeleteButtonClick($event)"
-  class="btn btn-sm btn-danger btn-delete-user mr-1"
->
-  Delete
-</button>
+<span *ngIf="!favorite">
+  <button routerLink="edit/{{ movie.id }}" class="btn btn-sm btn-primary mr-1">
+    Update
+  </button>
+  <button
+    (click)="onDeleteButtonClick($event)"
+    class="btn btn-sm btn-danger btn-delete-user mr-1"
+  >
+    Delete
+  </button>
+</span>
 <button
   (click)="onFavoritesButtonClick($event)"
   class="btn btn-sm btn-success mr-1"

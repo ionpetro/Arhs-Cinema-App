@@ -11,8 +11,6 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class MoviesListComponent implements OnInit {
   moviesObservable: Observable<Movie[]>;
-  // favoriteMoviesObservable: Observable<Movie[]>;
-  // favoriteMovies: Movie[];
   movies: Movie[];
   filteredMovies: Movie[];
 

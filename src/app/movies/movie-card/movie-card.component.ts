@@ -9,8 +9,9 @@ import { MoviesService } from 'src/app/services/movies.service';
 })
 export class MovieCardComponent implements OnInit {
   @Input('movie') movie: Movie;
+  @Input('favorite') favorite: boolean;
   @Output('delete') deleteEvent: EventEmitter<void> = new EventEmitter<void>();
-  @Output('favorite') favoriteEvent: EventEmitter<void> = new EventEmitter<
+  @Output('addFavorite') favoriteEvent: EventEmitter<void> = new EventEmitter<
     void
   >();
   constructor() {}

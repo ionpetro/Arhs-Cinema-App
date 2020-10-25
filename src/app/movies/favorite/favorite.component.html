@@ -1,1 +1,11 @@
-<p>favorite works!</p>
+<div
+  style="margin: 3em; text-align: center"
+  *ngFor="let favoriteMovie of favoriteMovies"
+  class="container"
+>
+  <app-movie-card
+    routerLink="../{{ favoriteMovie.id }}"
+    [movie]="favoriteMovie"
+    [favorite]="true"
+  ></app-movie-card>
+</div>

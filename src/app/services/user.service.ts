@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Movie } from '../models/movie';
 import { User } from '../models/user';
 import { AuthService } from './auth.service';
 
@@ -27,9 +28,18 @@ export class UserService {
       .pipe(map(() => this.authService.logout()));
   }
 
+  getFavoriteMovies() {
+    return this.http.get<Movie[]>(`${environment.apiUrl}/users/favorites`);
+  }
+
+  favoriteMovie(movie: Movie) {
+    return this.http.post<any>(`${environment.apiUrl}/users/favorites`, {
+      movieId: movie.id,
+    });
+  }
+
   updateUser(updatedUser: any): Observable<User> {
     const updatedCleanUser = this.keepChanges(updatedUser);
-    console.log(updatedCleanUser);
     return this.http
       .put<User>(`${environment.apiUrl}/users`, updatedCleanUser as User)
       .pipe(

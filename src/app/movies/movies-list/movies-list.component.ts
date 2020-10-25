@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Movie } from 'src/app/models/movie';
 import { MoviesService } from 'src/app/services/movies.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-movies-list',
@@ -10,10 +11,15 @@ import { MoviesService } from 'src/app/services/movies.service';
 })
 export class MoviesListComponent implements OnInit {
   moviesObservable: Observable<Movie[]>;
+  // favoriteMoviesObservable: Observable<Movie[]>;
+  // favoriteMovies: Movie[];
   movies: Movie[];
   filteredMovies: Movie[];
 
-  constructor(private moviesService: MoviesService) {}
+  constructor(
+    private moviesService: MoviesService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
     this.moviesObservable = this.moviesService.getMovies();
@@ -21,6 +27,10 @@ export class MoviesListComponent implements OnInit {
       this.movies = movies;
       this.filteredMovies = movies;
     });
+    // this.favoriteMoviesObservable = this.userService.getFavoriteMovies();
+    // this.favoriteMoviesObservable.subscribe((movies) => {
+    //   this.favoriteMovies = movies;
+    // });
   }
 
   deleteMovie(movie: Movie) {
@@ -29,6 +39,10 @@ export class MoviesListComponent implements OnInit {
       this.movies = this.movies.filter((x) => x.id !== movie.id);
       this.filteredMovies = this.movies;
     });
+  }
+
+  addToFavorites(movie: Movie) {
+    this.userService.favoriteMovie(movie).subscribe((x) => console.log(x));
   }
 
   filter(query: string) {

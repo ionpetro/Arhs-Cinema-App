@@ -28,6 +28,7 @@
       routerLink="{{ movie.id }}"
       [movie]="movie"
       (delete)="deleteMovie(movie)"
+      (favorite)="addToFavorites(movie)"
     ></app-movie-card>
   </div>
 </div>

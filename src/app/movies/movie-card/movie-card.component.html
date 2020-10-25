@@ -3,8 +3,14 @@
   Update
 </button>
 <button
-  (click)="onButtonClick($event)"
-  class="btn btn-sm btn-danger btn-delete-user"
+  (click)="onDeleteButtonClick($event)"
+  class="btn btn-sm btn-danger btn-delete-user mr-1"
 >
   Delete
+</button>
+<button
+  (click)="onFavoritesButtonClick($event)"
+  class="btn btn-sm btn-success mr-1"
+>
+  Add to favorites
 </button>

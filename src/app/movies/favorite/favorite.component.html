@@ -7,5 +7,6 @@
     routerLink="../{{ favoriteMovie.id }}"
     [movie]="favoriteMovie"
     [favorite]="true"
+    (deleteFavorite)="deleteFavorite(favoriteMovie)"
   ></app-movie-card>
 </div>

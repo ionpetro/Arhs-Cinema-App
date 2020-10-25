@@ -19,4 +19,15 @@ export class FavoriteComponent implements OnInit {
       this.favoriteMovies = movies;
     });
   }
+
+  deleteFavorite(movie: Movie) {
+    this.userService
+      .deleteFavoriteMovie(movie.favoriteId)
+      .subscribe((movie) => {
+        //update favoriteMovies list
+        this.favoriteMovies = this.favoriteMovies.filter(
+          (x) => movie.id !== x.favoriteId
+        );
+      });
+  }
 }

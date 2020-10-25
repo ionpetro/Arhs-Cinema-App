@@ -11,8 +11,14 @@
   </button>
 </span>
 <button
-  (click)="onFavoritesButtonClick($event)"
+  (click)="onAddToFavoritesButtonClick($event)"
   class="btn btn-sm btn-success mr-1"
 >
   Add to favorites
+</button>
+<button
+  (click)="onDeleteFromFavoritesButtonClick($event)"
+  class="btn btn-sm btn-warning mr-1"
+>
+  Remove from favorites
 </button>

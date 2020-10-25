@@ -27,7 +27,6 @@ export class AuthService {
   }
 
   public get userValue(): User {
-    // console.log(this.userSubject.value);
     return this.userSubject.value;
   }
 

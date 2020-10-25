@@ -12,6 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 export class MoviesListComponent implements OnInit {
   moviesObservable: Observable<Movie[]>;
   movies: Movie[];
+  favoriteMovies: Movie[];
   filteredMovies: Movie[];
 
   constructor(
@@ -25,10 +26,9 @@ export class MoviesListComponent implements OnInit {
       this.movies = movies;
       this.filteredMovies = movies;
     });
-    // this.favoriteMoviesObservable = this.userService.getFavoriteMovies();
-    // this.favoriteMoviesObservable.subscribe((movies) => {
-    //   this.favoriteMovies = movies;
-    // });
+    this.userService.getFavoriteMovies().subscribe((movies) => {
+      this.favoriteMovies = movies;
+    });
   }
 
   deleteMovie(movie: Movie) {
@@ -40,7 +40,22 @@ export class MoviesListComponent implements OnInit {
   }
 
   addToFavorites(movie: Movie) {
-    this.userService.favoriteMovie(movie).subscribe((x) => console.log(x));
+    this.userService.favoriteMovie(movie).subscribe();
+    this.userService.getFavoriteMovies().subscribe((movies) => {
+      this.favoriteMovies = movies;
+    });
+  }
+
+  deleteFavorite(movie: Movie) {
+    let favoriteId;
+    this.favoriteMovies.forEach((x) => {
+      if (x.id === movie.id) {
+        favoriteId = x.favoriteId;
+      }
+    });
+    this.userService
+      .deleteFavoriteMovie(favoriteId)
+      .subscribe((x) => console.log(x));
   }
 
   filter(query: string) {

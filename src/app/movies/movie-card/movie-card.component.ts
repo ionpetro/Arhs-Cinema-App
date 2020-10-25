@@ -11,9 +11,13 @@ export class MovieCardComponent implements OnInit {
   @Input('movie') movie: Movie;
   @Input('favorite') favorite: boolean;
   @Output('delete') deleteEvent: EventEmitter<void> = new EventEmitter<void>();
-  @Output('addFavorite') favoriteEvent: EventEmitter<void> = new EventEmitter<
+  @Output('addFavorite') addfavoriteEvent: EventEmitter<
     void
-  >();
+  > = new EventEmitter<void>();
+  @Output('deleteFavorite') deletefavoriteEvent: EventEmitter<
+    void
+  > = new EventEmitter<void>();
+
   constructor() {}
 
   ngOnInit(): void {}
@@ -24,8 +28,13 @@ export class MovieCardComponent implements OnInit {
     event.stopPropagation();
   }
 
-  onFavoritesButtonClick(event) {
-    this.favoriteEvent.emit();
+  onAddToFavoritesButtonClick(event) {
+    this.addfavoriteEvent.emit();
+    event.stopPropagation();
+  }
+
+  onDeleteFromFavoritesButtonClick(event) {
+    this.deletefavoriteEvent.emit();
     event.stopPropagation();
   }
 }

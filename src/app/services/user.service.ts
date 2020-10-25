@@ -38,6 +38,10 @@ export class UserService {
     });
   }
 
+  deleteFavoriteMovie(id: string): Observable<any> {
+    return this.http.delete<any>(`${environment.apiUrl}/users/favorites/${id}`);
+  }
+
   updateUser(updatedUser: any): Observable<User> {
     const updatedCleanUser = this.keepChanges(updatedUser);
     return this.http

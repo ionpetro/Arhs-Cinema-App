@@ -9,12 +9,12 @@ import { MoviesService } from 'src/app/services/movies.service';
 })
 export class MovieCardComponent implements OnInit {
   @Input('movie') movie: Movie;
-  @Output('delete') deleteEvent: EventEmitter<void> = new EventEmitter<void>();
+  // @Output('delete') deleteEvent: EventEmitter<void> = new EventEmitter<void>();
   constructor() {}
 
   ngOnInit(): void {}
 
-  onButtonClick() {
-    this.deleteEvent.emit();
-  }
+  // onButtonClick() {
+  //   this.deleteEvent.emit();
+  // }
 }

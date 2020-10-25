@@ -12,8 +12,8 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: '', component: MoviesListComponent },
-      { path: ':id', component: MoviePreviewComponent },
       { path: 'new', component: MovieDetailsComponent },
+      { path: ':id', component: MoviePreviewComponent },
       { path: 'edit/:id', component: MovieDetailsComponent },
     ],
   },

@@ -26,8 +26,13 @@
   <div *ngFor="let movie of filteredMovies">
     <app-movie-card
       routerLink="{{ movie.id }}"
-      (delete)="deleteMovie(movie)"
       [movie]="movie"
     ></app-movie-card>
+    <button
+      (click)="deleteMovie(movie)"
+      class="btn btn-sm btn-danger btn-delete-user"
+    >
+      Delete
+    </button>
   </div>
 </div>

@@ -27,12 +27,7 @@
     <app-movie-card
       routerLink="{{ movie.id }}"
       [movie]="movie"
+      (delete)="deleteMovie(movie)"
     ></app-movie-card>
-    <button
-      (click)="deleteMovie(movie)"
-      class="btn btn-sm btn-danger btn-delete-user"
-    >
-      Delete
-    </button>
   </div>
 </div>

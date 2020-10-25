@@ -22,11 +22,25 @@ export class MoviesService {
     return this.http.post<Movie>(`${environment.apiUrl}/movies`, movie);
   }
 
-  updateMovie(movie: Movie, id: string): Observable<Movie> {
+  updateMovie(
+    currentMovie: Movie,
+    movie: Movie,
+    id: string
+  ): Observable<Movie> {
+    movie = this.keepChanges(currentMovie, movie);
     return this.http.put<Movie>(`${environment.apiUrl}/movies/${id}`, movie);
   }
 
   deleteMovie(id: string): Observable<Movie> {
     return this.http.delete<Movie>(`${environment.apiUrl}/movies/${id}`);
+  }
+
+  keepChanges(currentMovie: Movie, movie: Movie) {
+    for (let prop in movie) {
+      if (currentMovie[prop] === movie[prop]) {
+        delete movie[prop];
+      }
+      return movie as Movie;
+    }
   }
 }

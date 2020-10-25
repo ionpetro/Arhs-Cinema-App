@@ -15,6 +15,7 @@ export class MovieDetailsComponent implements OnInit {
   error: string;
   id: string;
   isEditMode: boolean;
+  currentMovie: Movie;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -42,6 +43,7 @@ export class MovieDetailsComponent implements OnInit {
         .getMovieById(this.id)
         .pipe(first())
         .subscribe((x) => {
+          this.currentMovie = x;
           this.f.title.setValue(x.title);
           this.f.description.setValue(x.description);
           this.f.dateReleased.setValue(x.dateReleased);
@@ -58,7 +60,7 @@ export class MovieDetailsComponent implements OnInit {
 
     if (this.isEditMode) {
       this.moviesService
-        .updateMovie(this.moviesForm.value, this.id)
+        .updateMovie(this.currentMovie, this.moviesForm.value, this.id)
         .pipe(first())
         .subscribe(
           (data) => {

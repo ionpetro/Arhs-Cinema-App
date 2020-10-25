@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Movie } from 'src/app/models/movie';
 import { MoviesService } from 'src/app/services/movies.service';
 import { UserService } from 'src/app/services/user.service';
@@ -53,9 +54,7 @@ export class MoviesListComponent implements OnInit {
         favoriteId = x.favoriteId;
       }
     });
-    this.userService
-      .deleteFavoriteMovie(favoriteId)
-      .subscribe((x) => console.log(x));
+    this.userService.deleteFavoriteMovie(favoriteId).subscribe();
   }
 
   filter(query: string) {

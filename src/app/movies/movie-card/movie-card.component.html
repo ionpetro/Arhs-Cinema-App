@@ -11,12 +11,14 @@
   </button>
 </span>
 <button
+  *ngIf="!selected"
   (click)="onAddToFavoritesButtonClick($event)"
   class="btn btn-sm btn-success mr-1"
 >
   Add to favorites
 </button>
 <button
+  *ngIf="selected"
   (click)="onDeleteFromFavoritesButtonClick($event)"
   class="btn btn-sm btn-warning mr-1"
 >

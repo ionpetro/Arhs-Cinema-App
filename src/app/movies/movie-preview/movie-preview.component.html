@@ -2,5 +2,5 @@
   Title: {{ movie.title }}<br />
   Description: {{ movie.description }}<br />
   dateReleased: {{ movie.dateReleased | date }}<br />
-  <button class="btn btn-secondary" routerLink="/movies">Back</button>
+  <button class="btn btn-secondary" (click)="back()">Back</button>
 </div>

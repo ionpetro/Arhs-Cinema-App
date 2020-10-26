@@ -67,7 +67,7 @@ export class MovieDetailsComponent implements OnInit {
             this.router.navigate(['movies']);
           },
           (error) => {
-            this.error = error.error.message;
+            this.error = error;
           }
         );
     } else {
@@ -79,7 +79,7 @@ export class MovieDetailsComponent implements OnInit {
             this.router.navigate(['movies']);
           },
           (error) => {
-            this.error = error.error.message;
+            this.error = error;
           }
         );
     }

@@ -33,11 +33,4 @@ export class FavoriteComponent implements OnInit {
         this.filteredMovies = this.favoriteMovies;
       });
   }
-
-  filter(query: string) {
-    query = query.toLowerCase().trim();
-    this.filteredMovies = this.favoriteMovies.filter((movie) =>
-      movie.title.includes(query)
-    );
-  }
 }

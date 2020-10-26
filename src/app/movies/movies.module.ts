@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MoviePreviewComponent } from './movie-preview/movie-preview.component';
 import { FavoriteComponent } from './favorite/favorite.component';
+import { SearchComponent } from './shared/search/search.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { FavoriteComponent } from './favorite/favorite.component';
     MovieCardComponent,
     MoviePreviewComponent,
     FavoriteComponent,
+    SearchComponent,
   ],
   imports: [
     CommonModule,

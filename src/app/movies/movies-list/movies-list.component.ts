@@ -52,7 +52,6 @@ export class MoviesListComponent implements OnInit {
           x.favoriteId = movie.id;
         }
       });
-      this.filteredMovies = this.movies;
     });
   }
 
@@ -65,14 +64,6 @@ export class MoviesListComponent implements OnInit {
             delete x.favoriteId;
           }
         });
-        this.filteredMovies = this.movies;
       });
-  }
-
-  filter(query: string) {
-    query = query.toLowerCase().trim();
-    this.filteredMovies = this.movies.filter((movie) =>
-      movie.title.includes(query)
-    );
   }
 }

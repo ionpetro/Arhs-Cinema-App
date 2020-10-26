@@ -1,21 +1,10 @@
 <div class="container" style="margin: 3em; text-align: center">
   <h1>All Movies</h1>
-  <div class="search-bar-container">
-    <div class="field">
-      <p class="control has-icons-left">
-        <input
-          #filterInput
-          (keyup)="filter($event.target.value)"
-          class="input"
-          type="text"
-          placeholder="Filter"
-        />
-        <span class="icon is-small is-left">
-          <i class="fas fa-search"></i>
-        </span>
-      </p>
-    </div>
-  </div>
+
+  <app-search
+    [movies]="movies"
+    (filtered)="filteredMovies = $event"
+  ></app-search>
 
   &nbsp;
   <button routerLink="new" class="field button floating-add-button is-primary">
@@ -23,7 +12,7 @@
   </button>
   <br />
   <br />
-  <div *ngIf="filteredMovies.length === 0">No movies to display</div>
+  <div *ngIf="filteredMovies.length === 0">No movies found</div>
   <div *ngFor="let movie of filteredMovies">
     <app-movie-card
       routerLink="{{ movie.id }}"

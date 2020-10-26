@@ -29,4 +29,5 @@
       (deleteFavorite)="deleteFavorite(favoriteMovie)"
     ></app-movie-card>
   </div>
+  <div *ngIf="filteredMovies.length === 0">No favorite movies added yet</div>
 </div>

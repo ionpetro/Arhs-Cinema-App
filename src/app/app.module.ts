@@ -5,9 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './core/home/home.component';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
-import { NavigationComponent } from './navigation/navigation.component';
+import { NavigationComponent } from './core/navigation/navigation.component';
 import { LoggingInterceptor } from './helpers/logging.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 

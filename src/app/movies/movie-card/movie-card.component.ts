@@ -26,17 +26,7 @@ export class MovieCardComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.userService.getFavoriteMovies().subscribe((movies) => {
-      this.favoriteMovies = movies;
-
-      for (let movie of movies) {
-        if (movie.id === this.movie.id) {
-          this.isFavorite = true;
-        }
-      }
-
-      this.selected = this.isFavorite;
-    });
+    this.selected = Boolean(this.movie.favoriteId);
   }
 
   onDeleteButtonClick(event) {
@@ -46,15 +36,11 @@ export class MovieCardComponent implements OnInit {
   }
 
   onAddToFavoritesButtonClick(event) {
-    // console.log(this.movie);
-    this.selected = !this.selected;
-    // console.log(this.selected);
     this.addfavoriteEvent.emit();
     event.stopPropagation();
   }
 
   onDeleteFromFavoritesButtonClick(event) {
-    this.selected = !this.selected;
     this.deletefavoriteEvent.emit();
     event.stopPropagation();
   }

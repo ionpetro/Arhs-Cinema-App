@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Movie } from 'src/app/models/movie';
 import { MoviesService } from 'src/app/services/movies.service';
 import { UserService } from 'src/app/services/user.service';
@@ -13,7 +12,6 @@ import { UserService } from 'src/app/services/user.service';
 export class MoviesListComponent implements OnInit {
   moviesObservable: Observable<Movie[]>;
   movies: Movie[];
-  favoriteMovies: Movie[];
   filteredMovies: Movie[];
 
   constructor(
@@ -28,7 +26,13 @@ export class MoviesListComponent implements OnInit {
       this.filteredMovies = movies;
     });
     this.userService.getFavoriteMovies().subscribe((movies) => {
-      this.favoriteMovies = movies;
+      for (let movie of movies) {
+        this.movies.map((x) => {
+          if (x.id === movie.id) {
+            x.favoriteId = movie.favoriteId;
+          }
+        });
+      }
     });
   }
 
@@ -41,20 +45,28 @@ export class MoviesListComponent implements OnInit {
   }
 
   addToFavorites(movie: Movie) {
-    this.userService.favoriteMovie(movie).subscribe();
-    this.userService.getFavoriteMovies().subscribe((movies) => {
-      this.favoriteMovies = movies;
+    this.userService.favoriteMovie(movie).subscribe((movie) => {
+      //update movies list
+      this.movies.map((x) => {
+        if (x.id === movie.movieId) {
+          x.favoriteId = movie.id;
+        }
+      });
+      this.filteredMovies = this.movies;
     });
   }
 
   deleteFavorite(movie: Movie) {
-    let favoriteId;
-    this.favoriteMovies.forEach((x) => {
-      if (x.id === movie.id) {
-        favoriteId = x.favoriteId;
-      }
-    });
-    this.userService.deleteFavoriteMovie(favoriteId).subscribe();
+    this.userService
+      .deleteFavoriteMovie(movie.favoriteId)
+      .subscribe((movie) => {
+        this.movies.map((x) => {
+          if (x.id === movie.movieId) {
+            delete x.favoriteId;
+          }
+        });
+        this.filteredMovies = this.movies;
+      });
   }
 
   filter(query: string) {

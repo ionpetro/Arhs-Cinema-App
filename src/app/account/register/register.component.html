@@ -75,7 +75,13 @@
             </div>
           </div>
         </div>
-        <button class="btn btn-primary">Register</button><br />
+        <button class="btn btn-primary">
+          <span
+            *ngIf="loading"
+            class="spinner-border spinner-border-sm mr-1"
+          ></span>
+          Register</button
+        ><br />
         <small
           >You already have an account?
           <a routerLink="../login"> Login</a>

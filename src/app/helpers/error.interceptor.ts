@@ -4,6 +4,7 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
+  HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -19,14 +20,25 @@ export class ErrorInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
-      catchError((err) => {
-        if (err.status === 401) {
-          // auto logout if 401 response returned from api
+      catchError((error: HttpErrorResponse) => {
+        // auto logout if user in Unauthorized
+        if (error.status === 401) {
           this.authService.logout();
         }
 
-        const error = err.error.message || err.statusText;
-        return throwError(error);
+        let errorMsg = '';
+        // console.log(error);
+        if (error.status === 0) {
+          errorMsg = 'Server not reachable';
+        } else if (
+          error.error.message === 'Bad Request' &&
+          error.url.endsWith('/users/signin')
+        ) {
+          errorMsg = `Invalid username/password supplied`;
+        } else {
+          errorMsg = `${error.error.message}`;
+        }
+        return throwError(errorMsg);
       })
     );
   }

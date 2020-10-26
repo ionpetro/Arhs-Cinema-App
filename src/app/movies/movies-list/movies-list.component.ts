@@ -45,7 +45,7 @@ export class MoviesListComponent implements OnInit {
   }
 
   addToFavorites(movie: Movie) {
-    this.userService.favoriteMovie(movie).subscribe((movie) => {
+    this.userService.addFavoriteMovie(movie).subscribe((movie) => {
       //update movies list
       this.movies.map((x) => {
         if (x.id === movie.movieId) {

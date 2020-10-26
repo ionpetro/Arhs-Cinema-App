@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { favoriteMovieCorrelation } from '../models/favoriteMovieCorrelation';
 import { Movie } from '../models/movie';
 import { User } from '../models/user';
 import { AuthService } from './auth.service';
@@ -12,34 +12,35 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class UserService {
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-    private authService: AuthService
-  ) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   getUser(): Observable<User> {
     return this.http.get<User>(`${environment.apiUrl}/users/details`);
   }
 
-  deleteUser(): Observable<any> {
+  deleteUser(): Observable<User> {
     return this.http
-      .delete<any>(`${environment.apiUrl}/users`)
-      .pipe(map(() => this.authService.logout()));
+      .delete<User>(`${environment.apiUrl}/users`)
+      .pipe(tap((_) => this.authService.logout()));
   }
 
-  getFavoriteMovies() {
+  getFavoriteMovies(): Observable<Movie[]> {
     return this.http.get<Movie[]>(`${environment.apiUrl}/users/favorites`);
   }
 
-  favoriteMovie(movie: Movie) {
-    return this.http.post<any>(`${environment.apiUrl}/users/favorites`, {
-      movieId: movie.id,
-    });
+  addFavoriteMovie(movie: Movie): Observable<favoriteMovieCorrelation> {
+    return this.http.post<favoriteMovieCorrelation>(
+      `${environment.apiUrl}/users/favorites`,
+      {
+        movieId: movie.id,
+      }
+    );
   }
 
-  deleteFavoriteMovie(id: string): Observable<any> {
-    return this.http.delete<any>(`${environment.apiUrl}/users/favorites/${id}`);
+  deleteFavoriteMovie(id: string): Observable<favoriteMovieCorrelation> {
+    return this.http.delete<favoriteMovieCorrelation>(
+      `${environment.apiUrl}/users/favorites/${id}`
+    );
   }
 
   updateUser(updatedUser: any): Observable<User> {
@@ -62,11 +63,9 @@ export class UserService {
 
     for (let propName in obj) {
       if (
-        obj[propName] === user[propName] ||
         propName === 'confirmPassword' ||
-        obj[propName] === '' ||
-        obj[propName] === undefined ||
-        obj[propName] === null
+        obj[propName] === user[propName] ||
+        !obj[propName]
       ) {
         delete obj[propName];
       }

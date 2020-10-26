@@ -58,10 +58,10 @@ export class EditComponent implements OnInit {
     this.loading = true;
     this.userService.updateUser(this.updateProfile.value).subscribe(
       (data) => {
-        this.router.navigate(['account/login']);
+        this.router.navigate(['/profile']);
       },
       (error) => {
-        this.error = error.error.message;
+        this.error = error;
       }
     );
   }

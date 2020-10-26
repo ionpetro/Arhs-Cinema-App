@@ -12,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 export class MoviesListComponent implements OnInit {
   moviesObservable: Observable<Movie[]>;
   movies: Movie[];
-  filteredMovies: Movie[];
+  filteredMovies: Movie[] = [];
 
   constructor(
     private moviesService: MoviesService,

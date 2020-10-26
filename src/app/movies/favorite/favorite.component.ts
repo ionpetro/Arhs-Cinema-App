@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class FavoriteComponent implements OnInit {
   favoriteMoviesObservable: Observable<Movie[]>;
   favoriteMovies: Movie[];
-  filteredMovies: Movie[];
+  filteredMovies: Movie[] = [];
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {

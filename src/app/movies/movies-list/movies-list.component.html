@@ -23,6 +23,7 @@
   </button>
   <br />
   <br />
+  <div *ngIf="filteredMovies.length === 0">No movies to display</div>
   <div *ngFor="let movie of filteredMovies">
     <app-movie-card
       routerLink="{{ movie.id }}"
@@ -32,5 +33,4 @@
       (deleteFavorite)="deleteFavorite(movie)"
     ></app-movie-card>
   </div>
-  <div *ngIf="filteredMovies.length === 0">No movies to display</div>
 </div>

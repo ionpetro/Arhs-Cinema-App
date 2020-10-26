@@ -4,6 +4,12 @@
 
 export const environment = {
   production: false,
+  config: {
+    omdbApi: {
+      url: 'http://www.omdbapi.com/',
+      apiKey: '5f938b38',
+    },
+  },
   apiUrl: 'http://localhost:4242',
 };
 

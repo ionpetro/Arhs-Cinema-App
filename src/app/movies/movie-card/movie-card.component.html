@@ -1,4 +1,6 @@
 {{ movie.title }}
+<small>({{ movie.dateReleased | date: "yyyy" }})</small>
+<img src="{{ imgUrl }}" />
 <span *ngIf="!favorite">
   <button routerLink="edit/{{ movie.id }}" class="btn btn-sm btn-primary mr-1">
     Update

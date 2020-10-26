@@ -29,11 +29,21 @@ export class MovieCardComponent implements OnInit, OnChanges {
   selected: boolean;
   favoriteMovies: Movie[];
   isFavorite: boolean = false;
+  imgUrl: string;
+  defaultUrl: string = 'https://i.imgur.com/4JS4jY7.jpg';
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private moviesService: MoviesService
+  ) {}
 
   ngOnInit(): void {
     this.selected = Boolean(this.movie.favoriteId);
+    this.moviesService
+      .searchMovieDetails(this.movie.title)
+      .subscribe((x) =>
+        x ? (this.imgUrl = x) : (this.imgUrl = this.defaultUrl)
+      );
   }
 
   ngOnChanges(): void {

@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Movie } from '../models/movie';
 
@@ -42,5 +43,30 @@ export class MoviesService {
       }
       return movie as Movie;
     }
+  }
+
+  searchMovieDetails(movieName: string): Observable<string> {
+    const options = this.createHttpOptions(movieName);
+
+    return this.http.get(`${environment.config.omdbApi.url}`, options).pipe(
+      map(
+        (data: any) => {
+          if (data.Search) {
+            return data.Search[0].Poster;
+          }
+        },
+        (error) => {
+          return error;
+        }
+      )
+    );
+  }
+
+  private createHttpOptions(movieName: string) {
+    // omdb free search api
+    const params = new HttpParams({
+      fromObject: { s: movieName, apikey: environment.config.omdbApi.apiKey },
+    });
+    return { params };
   }
 }

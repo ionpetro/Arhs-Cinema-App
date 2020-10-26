@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { NavigationComponent } from './navigation/navigation.component';
+import { LoggingInterceptor } from './helpers/logging.interceptor';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, NavigationComponent],
@@ -19,6 +20,7 @@ import { NavigationComponent } from './navigation/navigation.component';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

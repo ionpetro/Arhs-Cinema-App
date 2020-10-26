@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { NavigationComponent } from './navigation/navigation.component';
 import { LoggingInterceptor } from './helpers/logging.interceptor';
+import { ErrorInterceptor } from './helpers/error.interceptor';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, NavigationComponent],
@@ -20,6 +21,7 @@ import { LoggingInterceptor } from './helpers/logging.interceptor';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],

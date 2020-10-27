@@ -1,7 +1,16 @@
-<div class="container" style="margin: 5em" *ngIf="movie">
-  Title: {{ movie.title }}<br />
-  Description: {{ movie.description }}<br />
-  dateReleased: {{ movie.dateReleased | date }}<br />
-  <img src="{{ imgUrl }}" />
-  <button class="btn btn-secondary" (click)="back()">Back</button>
+<div class="container">
+  <h1 class="middle">
+    <i class="fas fa-chevron-left" (click)="back()"></i>&nbsp; {{ movie.title }}
+  </h1>
+  <div class="media mt-5">
+    <img
+      class="align-self-start mr-3"
+      src="{{ imgUrl }}"
+      alt="Generic placeholder image"
+    />
+    <div class="media-body">
+      <p><strong>Description</strong> {{ movie.description }}</p>
+      <p><strong>Date Released</strong>: {{ movie.dateReleased | date }}</p>
+    </div>
+  </div>
 </div>

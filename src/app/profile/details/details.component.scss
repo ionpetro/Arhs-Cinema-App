@@ -1,0 +1,39 @@
+.card {
+  width: 600px;
+  margin: 5em auto;
+  position: relative;
+  border: none;
+  box-shadow: 0px 0px 20px -10px rgba(107, 107, 107, 1);
+  border-radius: 2em;
+}
+.card-body {
+  margin: auto 3em;
+}
+
+.username {
+  margin-top: -2.5em;
+  margin-bottom: 2em;
+  font-size: 1.5em;
+}
+
+.header {
+  background-color: #008476;
+  padding: 5em;
+}
+
+img {
+  width: 10px;
+}
+
+.circle {
+  position: absolute;
+  top: 120px;
+  object-fit: scale-down;
+  left: 60px;
+  background:white;
+  clip-path: circle(50%);
+  height: 5em;
+  width: 5em;
+  border: black;
+}
+

@@ -1,15 +1,20 @@
-<div class="container" style="margin: 5em">
-  <h1>Profile</h1>
+<div class="card">
   <div *ngIf="currentUser">
-    <p>Firstname: {{ currentUser.firstname }}</p>
-    <p>Lastname: {{ currentUser.lastname }}</p>
-    <p>Username: {{ currentUser.username }}</p>
-    <a routerLink="edit/" class="btn btn-sm btn-primary mr-1">Edit</a>
-    <button
-      (click)="deleteUser()"
-      class="btn btn-sm btn-danger btn-delete-user"
-    >
-      <span>Delete</span>
-    </button>
+    <div class="header"></div>
+    <img class="circle" src="assets/popcorn.png" />
+    <div class="card-body">
+      <h1>{{ currentUser.firstname }} {{ currentUser.lastname }}</h1>
+      <p class="username">@{{ currentUser.username }}</p>
+
+      <button routerLink="edit/" class="btn btn-primary mr-1">
+        <i class="fas fa-pencil-alt"></i>
+        Edit</button
+      >&nbsp;
+      <button (click)="deleteUser()" class="btn btn-danger btn-delete-user">
+        <i class="fas fa-trash-alt"></i>
+        Delete
+      </button>
+    </div>
+    <br />
   </div>
 </div>

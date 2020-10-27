@@ -1,0 +1,14 @@
+.form-control:focus {
+  border-color: #008476;
+  box-shadow: 0 0 0 .2rem rgba(#008476, .25);
+}
+
+.input-group-text {
+  background-color: #008476;
+  color: white;
+}
+
+.form-control {
+  border-radius: 3em;
+  padding: 1.5em;
+}

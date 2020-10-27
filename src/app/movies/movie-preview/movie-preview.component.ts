@@ -12,6 +12,8 @@ import { MoviesService } from 'src/app/services/movies.service';
 export class MoviePreviewComponent implements OnInit {
   id: string;
   movie: Movie;
+  imgUrl: string;
+  defaultUrl: string = 'https://i.imgur.com/4JS4jY7.jpg';
 
   constructor(
     private moviesService: MoviesService,
@@ -21,7 +23,14 @@ export class MoviePreviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    this.moviesService.getMovieById(this.id).subscribe((x) => (this.movie = x));
+    this.moviesService.getMovieById(this.id).subscribe((x) => {
+      this.movie = x;
+      this.moviesService
+        .searchMovieDetails(this.movie.title)
+        .subscribe((x) =>
+          x ? (this.imgUrl = x) : (this.imgUrl = this.defaultUrl)
+        );
+    });
   }
 
   back() {

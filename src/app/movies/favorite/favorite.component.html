@@ -1,12 +1,18 @@
-<div class="container" style="margin: 3em auto; text-align: center">
+<div class="container">
   <h1>Favorite Movies</h1>
-
-  <app-search
-    [movies]="favoriteMovies"
-    (filtered)="filteredMovies = $event"
-  ></app-search>
-
-  <div *ngIf="filteredMovies.length === 0">No movies found</div>
+  <div class="row">
+    <div class="col col-lg-7">
+      <app-search
+        [movies]="favoriteMovies"
+        (filtered)="filteredMovies = $event"
+      ></app-search>
+    </div>
+  </div>
+  <div class="row mt-5 justify-content-center">
+    <div style="color: gray" *ngIf="filteredMovies.length === 0">
+      No movies found
+    </div>
+  </div>
   <div class="row justify-content-around">
     <div *ngFor="let favoriteMovie of filteredMovies">
       <app-movie-card

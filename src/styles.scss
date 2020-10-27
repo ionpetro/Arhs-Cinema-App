@@ -2,3 +2,8 @@
 * {
   font-family: 'Open Sans', sans-serif;
 }
+
+.form-control:focus {
+  border-color: #008476 !important;
+  box-shadow: 0 0 0 .2rem rgba(#008476, .25) !important;
+}

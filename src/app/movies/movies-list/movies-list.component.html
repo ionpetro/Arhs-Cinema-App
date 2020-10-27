@@ -1,19 +1,31 @@
-<div class="container" style="margin: 5em auto; text-align: center">
-  <h1>All Movies</h1>
+<div class="container">
+  <h1>Movies</h1>
 
-  <app-search
-    [movies]="movies"
-    (filtered)="filteredMovies = $event"
-  ></app-search>
-
-  &nbsp;
-  <button routerLink="new" class="field button floating-add-button is-primary">
-    + Add
-  </button>
+  <div class="row">
+    <div class="col col-lg-7">
+      <app-search
+        [movies]="movies"
+        (filtered)="filteredMovies = $event"
+      ></app-search>
+    </div>
+    <div class="col"></div>
+    <div class="col col-lg-2">
+      <button routerLink="new" class="btn button floating-add-button">
+        <i class="fas fa-plus"></i>&nbsp;
+        <strong class="add">Add</strong>
+      </button>
+    </div>
+  </div>
   <br />
   <br />
-  <div *ngIf="filteredMovies.length === 0">No movies found</div>
-  <div class="row justify-content-around">
+  <div
+    class="row mt-5 justify-content-center"
+    style="color: gray"
+    *ngIf="filteredMovies.length === 0"
+  >
+    No movies found
+  </div>
+  <div class="row justify-content-between">
     <div *ngFor="let movie of filteredMovies">
       <app-movie-card
         routerLink="{{ movie.id }}"

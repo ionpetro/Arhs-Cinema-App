@@ -1,16 +1,14 @@
-<div class="search-bar-container">
-  <div class="field">
-    <p class="control has-icons-left">
-      <input
-        #filterInput
-        (keyup)="filter($event.target.value)"
-        class="input"
-        type="text"
-        placeholder="Search"
-      />
-      <span class="icon is-small is-left">
-        <i class="fas fa-search"></i>
-      </span>
-    </p>
-  </div>
+<div class="input-group">
+  <!-- <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">
+      <i class="fas fa-search"></i>
+    </span>
+  </div> -->
+  <input
+    (keyup)="filter($event.target.value)"
+    type="text"
+    class="form-control"
+    placeholder="Search movies..."
+    aria-describedby="basic-addon1"
+  />
 </div>

@@ -1,37 +1,40 @@
-<div>
-  <h3>{{ movie.title | uppercase }}</h3>
-  ({{ movie.dateReleased | date: "yyyy" }})
+<div class="card" style="width: 18rem">
+  <img class="card-img-top" src="{{ imgUrl }}" alt="Card image cap" />
+  <div class="card-body">
+    <div class="card-text">
+      <h5 class="title inline-block">{{ movie.title }}</h5>
+      <span class="inline-block">
+        ({{ movie.dateReleased | date: "yyyy" }})
+      </span>
+
+      <div class="buttons">
+        <br />
+        <span *ngIf="!favorite">
+          <button routerLink="edit/{{ movie.id }}" class="btn button">
+            <i class="fas fa-pencil-alt"></i>
+          </button>
+          <button (click)="onDeleteButtonClick($event)" class="btn button">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </span>
+        <button
+          *ngIf="!movie.favoriteId"
+          (click)="onAddToFavoritesButtonClick($event)"
+          class="btn button right-button"
+        >
+          <i class="far fa-heart"></i>
+        </button>
+        <button
+          *ngIf="movie.favoriteId"
+          (click)="onDeleteFromFavoritesButtonClick($event)"
+          class="btn button right-button"
+        >
+          <i class="fas fa-heart"></i>
+        </button>
+      </div>
+      <br />
+    </div>
+  </div>
 </div>
-<img src="{{ imgUrl }}" />
-<div>
-  <br />
-  <span *ngIf="!favorite">
-    <button
-      routerLink="edit/{{ movie.id }}"
-      class="btn btn-sm btn-primary mr-1"
-    >
-      Update
-    </button>
-    <button
-      (click)="onDeleteButtonClick($event)"
-      class="btn btn-sm btn-danger btn-delete-user mr-1"
-    >
-      Delete
-    </button>
-  </span>
-  <button
-    *ngIf="!movie.favoriteId"
-    (click)="onAddToFavoritesButtonClick($event)"
-    class="btn btn-sm btn-success mr-1"
-  >
-    Add to favorites
-  </button>
-  <button
-    *ngIf="movie.favoriteId"
-    (click)="onDeleteFromFavoritesButtonClick($event)"
-    class="btn btn-sm btn-warning mr-1"
-  >
-    Remove from favorites
-  </button>
-</div>
-<br />
+
+<p></p>

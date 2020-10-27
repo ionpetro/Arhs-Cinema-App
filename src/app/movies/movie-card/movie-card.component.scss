@@ -1,3 +1,57 @@
 img {
-  height: 200px !important;
+  height: 280px !important;
+}
+
+h5 {
+  font-weight: 700;
+}
+
+.card-text {
+  text-align: left;
+}
+
+.inline-block {
+  display: inline;
+}
+
+span.inline-block {
+  font-size: .8em !important;
+  font-weight: 100;
+  padding-left: .3em;
+}
+
+.card {
+  transition: box-shadow .3s;
+  border-radius: 2em;
+  border: none;
+  box-shadow: 0px 0px 20px -10px rgba(107, 107, 107, 1);
+}
+
+.card-img-top {
+  border-top-left-radius: 2em;
+  border-top-right-radius: 2em;
+}
+
+.card:hover {
+  border: none;
+  box-shadow: 0px 0px 20px -5px rgba(107, 107, 107, 1);
+}
+
+.buttons {
+  position: relative;
+}
+
+.button {
+  margin: 0 .5em;
+  background-color: white;
+  box-shadow: 0px 0px 20px -10px rgba(107, 107, 107, 1);
+}
+
+.button:hover {
+  box-shadow: 0px 0px 20px -5px rgba(107, 107, 107, 1);
+}
+
+.right-button {
+  position: absolute;
+  right: 10px;
 }

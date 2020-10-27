@@ -1,4 +1,4 @@
-<div class="container" style="margin: 3em; text-align: center">
+<div class="container" style="margin: 3em auto; text-align: center">
   <h1>Favorite Movies</h1>
 
   <app-search
@@ -7,16 +7,15 @@
   ></app-search>
 
   <div *ngIf="filteredMovies.length === 0">No movies found</div>
-  <div
-    style="margin: 3em; text-align: center"
-    *ngFor="let favoriteMovie of filteredMovies"
-    class="container"
-  >
-    <app-movie-card
-      routerLink="../{{ favoriteMovie.id }}"
-      [movie]="favoriteMovie"
-      [favorite]="true"
-      (deleteFavorite)="deleteFavorite(favoriteMovie)"
-    ></app-movie-card>
+  <div class="row justify-content-around">
+    <div *ngFor="let favoriteMovie of filteredMovies">
+      <app-movie-card
+        routerLink="../{{ favoriteMovie.id }}"
+        [movie]="favoriteMovie"
+        class="col"
+        [favorite]="true"
+        (deleteFavorite)="deleteFavorite(favoriteMovie)"
+      ></app-movie-card>
+    </div>
   </div>
 </div>

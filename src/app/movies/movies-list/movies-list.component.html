@@ -13,13 +13,16 @@
   <br />
   <br />
   <div *ngIf="filteredMovies.length === 0">No movies found</div>
-  <div *ngFor="let movie of filteredMovies">
-    <app-movie-card
-      routerLink="{{ movie.id }}"
-      [movie]="movie"
-      (delete)="deleteMovie(movie)"
-      (addFavorite)="addToFavorites(movie)"
-      (deleteFavorite)="deleteFavorite(movie)"
-    ></app-movie-card>
+  <div class="row justify-content-around">
+    <div *ngFor="let movie of filteredMovies">
+      <app-movie-card
+        routerLink="{{ movie.id }}"
+        class="col"
+        [movie]="movie"
+        (delete)="deleteMovie(movie)"
+        (addFavorite)="addToFavorites(movie)"
+        (deleteFavorite)="deleteFavorite(movie)"
+      ></app-movie-card>
+    </div>
   </div>
 </div>

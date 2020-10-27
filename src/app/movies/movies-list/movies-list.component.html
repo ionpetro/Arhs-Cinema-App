@@ -18,12 +18,9 @@
   </div>
   <br />
   <br />
-  <div
-    class="row mt-5 justify-content-center"
-    style="color: gray"
-    *ngIf="filteredMovies.length === 0"
-  >
-    No movies found
+  <div style="text-align: center" *ngIf="filteredMovies.length === 0">
+    <img src="assets/no-movies.svg" /> <br />
+    <h2 style="margin: 1em; font-weight: 600">No movies found</h2>
   </div>
   <div class="row justify-content-between">
     <div *ngFor="let movie of filteredMovies">

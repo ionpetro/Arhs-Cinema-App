@@ -1,0 +1,19 @@
+<h2 style="font-weight: 700" mat-dialog-title>
+  Are you sure you want to delete?
+</h2>
+<br />
+<div mat-dialog-content>
+  <p>If you continue, the user will deleted <strong>permanently!</strong></p>
+</div>
+<br />
+<div mat-dialog-actions>
+  <button class="btn btn-secondary" (click)="onNoClick()">Cancel</button>&nbsp;
+  <button
+    mat-raised-button
+    (click)="deleteUser()"
+    class="btn btn-danger btn-delete-user"
+  >
+    <i class="fas fa-trash-alt"></i>
+    Delete permanently
+  </button>
+</div>

@@ -10,6 +10,8 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { NavigationComponent } from './core/navigation/navigation.component';
 import { LoggingInterceptor } from './helpers/logging.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, NavigationComponent],
@@ -18,6 +20,8 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
     HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -1,6 +1,6 @@
 <div class="col-md-6 offset-md-3 mt-5">
-  <h3 *ngIf="isEditMode">Edit Movie</h3>
-  <h3 *ngIf="!isEditMode">Add Movie</h3>
+  <h1 *ngIf="isEditMode">Edit Movie</h1>
+  <h1 *ngIf="!isEditMode">Add Movie</h1>
   <div class="card-body">
     <form [formGroup]="moviesForm" (ngSubmit)="onSubmit()">
       <div class="form-group">

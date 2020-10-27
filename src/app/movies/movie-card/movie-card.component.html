@@ -1,28 +1,37 @@
-{{ movie.title }}
-<small>({{ movie.dateReleased | date: "yyyy" }})</small>
+<div>
+  <h3>{{ movie.title | uppercase }}</h3>
+  ({{ movie.dateReleased | date: "yyyy" }})
+</div>
 <img src="{{ imgUrl }}" />
-<span *ngIf="!favorite">
-  <button routerLink="edit/{{ movie.id }}" class="btn btn-sm btn-primary mr-1">
-    Update
+<div>
+  <br />
+  <span *ngIf="!favorite">
+    <button
+      routerLink="edit/{{ movie.id }}"
+      class="btn btn-sm btn-primary mr-1"
+    >
+      Update
+    </button>
+    <button
+      (click)="onDeleteButtonClick($event)"
+      class="btn btn-sm btn-danger btn-delete-user mr-1"
+    >
+      Delete
+    </button>
+  </span>
+  <button
+    *ngIf="!movie.favoriteId"
+    (click)="onAddToFavoritesButtonClick($event)"
+    class="btn btn-sm btn-success mr-1"
+  >
+    Add to favorites
   </button>
   <button
-    (click)="onDeleteButtonClick($event)"
-    class="btn btn-sm btn-danger btn-delete-user mr-1"
+    *ngIf="movie.favoriteId"
+    (click)="onDeleteFromFavoritesButtonClick($event)"
+    class="btn btn-sm btn-warning mr-1"
   >
-    Delete
+    Remove from favorites
   </button>
-</span>
-<button
-  *ngIf="!movie.favoriteId"
-  (click)="onAddToFavoritesButtonClick($event)"
-  class="btn btn-sm btn-success mr-1"
->
-  Add to favorites
-</button>
-<button
-  *ngIf="movie.favoriteId"
-  (click)="onDeleteFromFavoritesButtonClick($event)"
-  class="btn btn-sm btn-warning mr-1"
->
-  Remove from favorites
-</button>
+</div>
+<br />

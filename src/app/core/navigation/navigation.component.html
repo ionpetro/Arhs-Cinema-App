@@ -1,49 +1,75 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="user">
-  <a class="navbar-brand" routerLink="/">Arηs Cinema</a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<nav class="navbar navbar-expand-lg navbar-dark" *ngIf="user">
+  <div class="container">
+    <img routerLink="/" src="assets/logo.png" />
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/movies">All Movies</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/movies/favorite">Favourite Movies</a>
-      </li>
-    </ul>
-    <div>
-      <div class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-          >Profile
-        </a>
-        <div
-          style="left: -100px !important"
-          class="dropdown-menu"
-          aria-labelledby="navbarDropdown"
-        >
-          <p class="dropdown-item">Logged in as {{ user.firstname }}</p>
-          <a class="dropdown-item" routerLink="/profile" href="#">Profile</a>
-          <div class="dropdown-divider"></div>
-          <a (click)="logout()" class="dropdown-item" href="#"
-            ><strong>Logout</strong></a
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/movies">All Movies</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/movies/favorite">Favourite Movies</a>
+        </li>
+      </ul>
+      <div>
+        <div class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
           >
+            <svg height="40" viewBox="0 0 24 24" width="40">
+              <path
+                id="profile"
+                fill="white"
+                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+              />
+            </svg>
+          </a>
+          <div
+            style="left: -100px !important"
+            class="dropdown-menu"
+            aria-labelledby="navbarDropdown"
+          >
+            <span class="dropdown-item">
+              Signed in as <strong> {{ user.firstname }}</strong>
+            </span>
+            <a class="dropdown-item" routerLink="/profile" href="#">Profile</a>
+            <div class="dropdown-divider"></div>
+            <a (click)="logout()" class="dropdown-item" href="#">
+              <svg
+                version="1.1"
+                height="18"
+                width="18"
+                viewBox="0 0 512 512"
+                xml:space="preserve"
+              >
+                <path
+                  d="m255.15 468.62h-191.36c-11.737 0-21.262-9.526-21.262-21.262v-382.72c0-11.737 9.526-21.262 21.262-21.262h191.36c11.758 0 21.262-9.504 21.262-21.262s-9.504-21.264-21.262-21.264h-191.36c-35.168 0-63.787 28.62-63.787 63.788v382.72c0 35.168 28.619 63.787 63.787 63.787h191.36c11.758 0 21.262-9.504 21.262-21.262s-9.504-21.262-21.262-21.262z"
+                />
+
+                <path
+                  d="m505.66 240.86-129.28-127.58c-8.335-8.25-21.815-8.143-30.065 0.213s-8.165 21.815 0.213 30.065l92.385 91.173h-247.56c-11.758 0-21.262 9.504-21.262 21.262s9.504 21.263 21.262 21.263h247.56l-92.385 91.173c-8.377 8.25-8.441 21.709-0.213 30.065 4.167 4.21 9.653 6.336 15.139 6.336 5.401 0 10.801-2.041 14.926-6.124l129.28-127.58c4.04-3.997 6.336-9.441 6.336-15.139 0-5.696-2.275-11.118-6.336-15.137z"
+                />
+              </svg>
+              <strong> Logout</strong></a
+            >
+          </div>
         </div>
       </div>
     </div>

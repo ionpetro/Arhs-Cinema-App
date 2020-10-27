@@ -1,0 +1,27 @@
+img {
+  width: 100px;
+  cursor: pointer;
+}
+
+nav {
+  background-color: #323F48 !important;
+}
+
+.nav-item {
+  margin-left: 1em !important;
+}
+
+.dropdown-toggle::after {
+  color: white;
+}
+
+#navbarDropdown:hover {
+
+  #profile {
+    fill: rgb(221, 221, 221) !important;
+  }
+}
+
+.dropdown-item:active {
+  background-color: #008476;
+}

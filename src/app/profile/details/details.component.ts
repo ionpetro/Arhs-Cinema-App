@@ -12,10 +12,16 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 export class DetailsComponent implements OnInit {
   user: Observable<User>;
   currentUser: User;
+  error: string;
 
   constructor(private userService: UserService, public dialog: MatDialog) {
     this.user = this.userService.getUser();
-    this.user.subscribe((user) => (this.currentUser = user));
+    this.user.subscribe(
+      (user) => (this.currentUser = user),
+      (error) => {
+        this.error = error;
+      }
+    );
   }
 
   openDialog(): void {

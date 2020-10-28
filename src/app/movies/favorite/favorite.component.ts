@@ -13,13 +13,19 @@ export class FavoriteComponent implements OnInit {
   favoriteMovies: Movie[];
   filteredMovies: Movie[] = [];
   constructor(private userService: UserService) {}
+  error: string;
 
   ngOnInit(): void {
     this.favoriteMoviesObservable = this.userService.getFavoriteMovies();
-    this.favoriteMoviesObservable.subscribe((movies) => {
-      this.favoriteMovies = movies;
-      this.filteredMovies = movies;
-    });
+    this.favoriteMoviesObservable.subscribe(
+      (movies) => {
+        this.favoriteMovies = movies;
+        this.filteredMovies = movies;
+      },
+      (error) => {
+        this.error = error;
+      }
+    );
   }
 
   deleteFavorite(movie: Movie) {

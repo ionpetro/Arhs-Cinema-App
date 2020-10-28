@@ -1,4 +1,8 @@
 <div class="container">
+  <div *ngIf="error" class="alert alert-danger mt-3 mb-0">
+    {{ error }}
+  </div>
+
   <h1>Favorite Movies</h1>
   <div class="row">
     <div class="col col-lg-7">

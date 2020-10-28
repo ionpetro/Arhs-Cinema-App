@@ -13,6 +13,7 @@ export class MoviesListComponent implements OnInit {
   movies$: Observable<Movie[]>;
   movies: Movie[];
   filteredMovies: Movie[] = [];
+  error: string;
 
   constructor(
     private moviesService: MoviesService,
@@ -21,10 +22,15 @@ export class MoviesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.movies$ = this.moviesService.getMovies();
-    this.movies$.subscribe((movies) => {
-      this.movies = movies;
-      this.filteredMovies = movies;
-    });
+    this.movies$.subscribe(
+      (movies) => {
+        this.movies = movies;
+        this.filteredMovies = movies;
+      },
+      (error) => {
+        this.error = error;
+      }
+    );
     this.userService.getFavoriteMovies().subscribe((movies) => {
       for (let movie of movies) {
         this.movies.map((x) => {

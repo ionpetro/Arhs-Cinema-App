@@ -64,7 +64,10 @@ export class RegisterComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data) => {
-          this.router.navigate(['account/login']);
+          //login user
+          this.authService
+            .login(this.f.username.value, this.f.password.value, true)
+            .subscribe((_) => this.router.navigate(['/']));
         },
         (error) => {
           this.error = error;

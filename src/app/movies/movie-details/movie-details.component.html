@@ -32,11 +32,12 @@
       </div>
 
       <div class="form-group">
-        <label for="dateReleased">dateReleased</label>
+        <label for="dateReleased">Date Released</label>
         <input
           type="date"
           formControlName="dateReleased"
           class="form-control"
+          id="middle"
           [ngClass]="{ 'is-invalid': submitted && f.dateReleased.errors }"
         />
         <div

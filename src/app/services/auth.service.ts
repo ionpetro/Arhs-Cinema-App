@@ -30,7 +30,7 @@ export class AuthService {
     return this.userSubject.value;
   }
 
-  login(username: string, password: string, remember: boolean): any {
+  login(username: string, password: string, remember?: boolean): any {
     return this.http
       .post<any>(`${environment.apiUrl}/users/signin`, {
         username,
@@ -62,13 +62,11 @@ export class AuthService {
     username: string,
     password: string
   ) {
-    return this.http
-      .post<any>(`${environment.apiUrl}/users`, {
-        firstname,
-        lastname,
-        username,
-        password,
-      })
-      .pipe(tap((x) => x));
+    return this.http.post<any>(`${environment.apiUrl}/users`, {
+      firstname,
+      lastname,
+      username,
+      password,
+    });
   }
 }

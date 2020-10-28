@@ -1,7 +1,10 @@
-<div class="col-md-6 offset-md-3 mt-5">
-  <div class="card">
-    <h4 class="card-header">Registration</h4>
-    <div class="card-body">
+<div class="contain">
+  <div>
+    <img src="assets/account-img.png" class="left-half" />
+  </div>
+  <div class="right-half">
+    <div class="account-container">
+      <h2 style="text-align: center" class="title">Sign Up</h2>
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="firstname">Firstname</label>

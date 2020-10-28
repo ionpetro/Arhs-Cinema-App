@@ -1,7 +1,10 @@
-<div class="col-md-6 offset-md-3 mt-5">
-  <div class="card">
-    <h4 class="card-header">Login</h4>
-    <div class="card-body">
+<div class="contain">
+  <div>
+    <img src="assets/account-img.png" class="left-half" />
+  </div>
+  <div class="right-half">
+    <div class="account-container">
+      <h2 style="text-align: center" class="title">Login</h2>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="username">Username</label>

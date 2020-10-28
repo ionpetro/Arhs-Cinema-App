@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from '../../models/user';
 import { AuthService } from '../../services/auth.service';
 
@@ -8,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit {
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     this.authService.user.subscribe((x) => (this.user = x));
   }
 
@@ -18,5 +19,6 @@ export class NavigationComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+    this.router.navigate(['/account/login']);
   }
 }

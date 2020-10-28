@@ -61,5 +61,39 @@ h1 {
   color: #00756a !important;
 }
 
+input {
+  border-radius: 3em !important;
+}
+
+.left-half {
+
+  position: absolute;
+  left: 0px;
+  width: 50%;
+}
+
+.right-half {
+  height: 100%;
+  position: absolute;
+  right: 0px;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h2 {
+  font-weight: 600;
+}
+.title {
+  margin-top: -2em;
+  margin-bottom: 2em;
+}
+.account-container {
+
+  margin: auto auto;
+  width: 70%;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

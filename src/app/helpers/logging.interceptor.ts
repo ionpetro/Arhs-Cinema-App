@@ -19,7 +19,7 @@ export class LoggingInterceptor implements HttpInterceptor {
     let ok: string;
 
     if (req.url.startsWith(environment.config.omdbApi.url)) {
-      // proceed if the api is omdb
+      // not log omdb api
       return next.handle(req);
     }
 

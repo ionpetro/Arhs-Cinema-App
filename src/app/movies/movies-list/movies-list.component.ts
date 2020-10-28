@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./movies-list.component.scss'],
 })
 export class MoviesListComponent implements OnInit {
-  moviesObservable: Observable<Movie[]>;
+  movies$: Observable<Movie[]>;
   movies: Movie[];
   filteredMovies: Movie[] = [];
 
@@ -20,8 +20,8 @@ export class MoviesListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.moviesObservable = this.moviesService.getMovies();
-    this.moviesObservable.subscribe((movies) => {
+    this.movies$ = this.moviesService.getMovies();
+    this.movies$.subscribe((movies) => {
       this.movies = movies;
       this.filteredMovies = movies;
     });

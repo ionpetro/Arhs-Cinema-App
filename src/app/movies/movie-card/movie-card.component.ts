@@ -15,7 +15,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './movie-card.component.html',
   styleUrls: ['./movie-card.component.scss'],
 })
-export class MovieCardComponent implements OnInit, OnChanges {
+export class MovieCardComponent implements OnInit {
   @Input('movie') movie: Movie;
   @Input('favorite') favorite: boolean;
   @Output('delete') deleteEvent: EventEmitter<void> = new EventEmitter<void>();
@@ -26,7 +26,6 @@ export class MovieCardComponent implements OnInit, OnChanges {
     void
   > = new EventEmitter<void>();
 
-  selected: boolean;
   favoriteMovies: Movie[];
   isFavorite: boolean = false;
   imgUrl: string;
@@ -38,16 +37,11 @@ export class MovieCardComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit(): void {
-    this.selected = Boolean(this.movie.favoriteId);
     this.moviesService
       .searchMovieDetails(this.movie.title)
       .subscribe((x) =>
         x ? (this.imgUrl = x) : (this.imgUrl = this.defaultUrl)
       );
-  }
-
-  ngOnChanges(): void {
-    this.selected = Boolean(this.movie.favoriteId);
   }
 
   onDeleteButtonClick(event) {

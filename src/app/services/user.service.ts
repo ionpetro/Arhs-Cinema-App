@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { delay, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { favoriteMovieCorrelation } from '../models/favoriteMovieCorrelation';
 import { Movie } from '../models/movie';
@@ -25,7 +25,9 @@ export class UserService {
   }
 
   getFavoriteMovies(): Observable<Movie[]> {
-    return this.http.get<Movie[]>(`${environment.apiUrl}/users/favorites`);
+    return this.http
+      .get<Movie[]>(`${environment.apiUrl}/users/favorites`)
+      .pipe(delay(100));
   }
 
   addFavoriteMovie(movie: Movie): Observable<favoriteMovieCorrelation> {

@@ -9,6 +9,7 @@ import { Movie } from '../models/movie';
   providedIn: 'root',
 })
 export class MoviesService {
+  moviesUrl = environment.apiUrl;
   constructor(private http: HttpClient) {}
 
   getMovies(): Observable<Movie[]> {

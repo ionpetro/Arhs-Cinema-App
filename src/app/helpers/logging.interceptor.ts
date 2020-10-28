@@ -8,6 +8,7 @@ import {
 } from '@angular/common/http';
 
 import { finalize, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class LoggingInterceptor implements HttpInterceptor {
@@ -16,6 +17,11 @@ export class LoggingInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     const started = Date.now();
     let ok: string;
+
+    if (req.url.startsWith(environment.config.omdbApi.url)) {
+      // proceed if the api is omdb
+      return next.handle(req);
+    }
 
     // extend server response observable with logging
     return next.handle(req).pipe(

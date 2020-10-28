@@ -1,0 +1,6 @@
+[submodule "arhs-api/angular-academy-api"]
+	path = arhs-api/angular-academy-api
+	url = https://github.com/arhs-dev/angular-academy-api
+[submodule "angular-academy-api"]
+	path = angular-academy-api
+	url = https://github.com/arhs-dev/angular-academy-api

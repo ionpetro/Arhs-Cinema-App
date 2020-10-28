@@ -22,7 +22,7 @@
     <img src="assets/no-movies.svg" /> <br />
     <h2 style="margin: 1em; font-weight: 600">No movies found</h2>
   </div>
-  <div class="row justify-content-between">
+  <div class="row justify-content-around">
     <div *ngFor="let movie of filteredMovies">
       <app-movie-card
         routerLink="{{ movie.id }}"

@@ -44,3 +44,11 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Firebase
+.firebaserc
+firebase.json
+.firebase
+
+# Firebase cloud functions
+/functions

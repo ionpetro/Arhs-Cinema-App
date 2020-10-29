@@ -21,7 +21,9 @@ export class MoviesListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // retrieve movies from database
     this.movies$ = this.moviesService.getMovies();
+
     this.movies$.subscribe(
       (movies) => {
         this.movies = movies;
@@ -31,6 +33,8 @@ export class MoviesListComponent implements OnInit {
         this.error = error;
       }
     );
+
+    // add favoriteId to every movie that is included to favorites
     this.userService.getFavoriteMovies().subscribe((movies) => {
       for (let movie of movies) {
         this.movies.map((x) => {
@@ -65,6 +69,7 @@ export class MoviesListComponent implements OnInit {
     this.userService
       .deleteFavoriteMovie(movie.favoriteId)
       .subscribe((movie) => {
+        // update movies list
         this.movies.map((x) => {
           if (x.id === movie.movieId) {
             delete x.favoriteId;

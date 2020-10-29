@@ -12,8 +12,9 @@ export class FavoriteComponent implements OnInit {
   favoriteMoviesObservable: Observable<Movie[]>;
   favoriteMovies: Movie[];
   filteredMovies: Movie[] = [];
-  constructor(private userService: UserService) {}
   error: string;
+
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
     this.favoriteMoviesObservable = this.userService.getFavoriteMovies();

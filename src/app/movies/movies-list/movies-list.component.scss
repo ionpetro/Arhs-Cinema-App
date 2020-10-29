@@ -16,10 +16,12 @@ img {
 }
 
 .btn:hover {
+  transition: scale .3s ease-in-out;
   color: white !important;
+  scale: 1.05;
 }
 
 .floating-add-button:hover {
-  box-shadow: 0px 0px 20px -5px rgba(107, 107, 107, 1);
+  box-shadow: 0px 0px 15px -5px rgba(107, 107, 107, 1);
   background-color: #00756a !important;
 }

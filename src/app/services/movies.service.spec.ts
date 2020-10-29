@@ -6,6 +6,7 @@ import {
 } from '@angular/common/http/testing';
 import { MoviesService } from './movies.service';
 import { Movie } from '../models/movie';
+import { fail } from 'assert';
 
 fdescribe('MoviesService', () => {
   let service: MoviesService;
@@ -66,9 +67,7 @@ fdescribe('MoviesService', () => {
       });
 
       // MovieService should have made one request to GET movies from expected URL
-      const req = httpTestingController.expectOne(
-        `${service.moviesUrl}/movies`
-      );
+      const req = httpTestingController.expectOne(service.moviesUrl);
       expect(req.request.method).toEqual('GET');
 
       // Respond with the mock heroes
@@ -96,14 +95,134 @@ fdescribe('MoviesService', () => {
         );
 
       // MovieService should have made one request to GET movies from expected URL
-      const req = httpTestingController.expectOne(
-        `${service.moviesUrl}/movies`
-      );
+      const req = httpTestingController.expectOne(service.moviesUrl);
       expect(req.request.method).toEqual('POST');
       expect(req.request.body).toEqual(movie);
 
       // Respond with the mock heroes
       req.flush(movie);
+    });
+  });
+
+  describe('#keepChangesMethod', () => {
+    beforeEach(() => {
+      service = TestBed.inject(MoviesService);
+    });
+
+    it('should return only movie description', () => {
+      let changes;
+      const movie: Movie = {
+        id: 'string',
+        title: 'MyMovie',
+        description: 'MyDescription',
+        dateReleased: '12-09-2010',
+      };
+
+      const updatedMovie: Movie = {
+        id: 'string',
+        title: 'MyMovieUpdated',
+        description: 'MyDescription',
+        dateReleased: '12-09-2010',
+      };
+
+      const movieChanges = {
+        title: 'MyMovieUpdated',
+      };
+
+      changes = service.keepChanges(movie, updatedMovie);
+      expect(changes).toEqual(movieChanges, 'should return only description'),
+        fail;
+    });
+
+    it('should return all attributes', () => {
+      let changes;
+      const movie: Movie = {
+        id: 'string',
+        title: 'MyMovie',
+        description: 'MyDescription',
+        dateReleased: '12-09-2010',
+      };
+
+      const updatedMovie: Movie = {
+        id: 'string',
+        title: 'MyMovieUpdated',
+        description: 'MyDescriptionUpdated',
+        dateReleased: '11-10-2012',
+      };
+
+      const movieChanges = {
+        title: 'MyMovieUpdated',
+        description: 'MyDescriptionUpdated',
+        dateReleased: '11-10-2012',
+      };
+
+      changes = service.keepChanges(movie, updatedMovie);
+      expect(changes).toEqual(movieChanges, 'should return only description'),
+        fail;
+    });
+  });
+
+  describe('#updateMovie', () => {
+    beforeEach(() => {
+      service = TestBed.inject(MoviesService);
+    });
+
+    it('should update a movie', () => {
+      const movie: Movie = {
+        id: 'string',
+        title: 'MyMovie',
+        description: 'MyDescription',
+        dateReleased: '12-09-2010',
+      };
+
+      const updatedMovie: Movie = {
+        id: 'string',
+        title: 'MyMovieUpdated',
+        description: 'MyDescription',
+        dateReleased: '12-09-2010',
+      };
+
+      service.updateMovie(movie, updatedMovie, movie.id).subscribe((data) => {
+        expect(data).toEqual(updatedMovie, 'should return updated movie'), fail;
+      });
+
+      const req = httpTestingController.expectOne(
+        `${service.moviesUrl}/${movie.id}`
+      );
+      expect(req.request.method).toEqual('PUT');
+      expect(req.request.body).toEqual(updatedMovie);
+
+      // Respond with the mock movie
+      req.flush(updatedMovie);
+    });
+  });
+
+  describe('#deleteMovie', () => {
+    beforeEach(() => {
+      service = TestBed.inject(MoviesService);
+    });
+
+    it('should delete a movie', () => {
+      const movieId: string = 'string';
+
+      const deletedMovie: Movie = {
+        id: 'string',
+        title: 'MyMovie',
+        description: 'MyDescription',
+        dateReleased: '12-09-2010',
+      };
+
+      service.deleteMovie(movieId).subscribe((data) => {
+        expect(data).toEqual(deletedMovie, 'should return deleted movie'), fail;
+      });
+
+      const req = httpTestingController.expectOne(
+        `${service.moviesUrl}/${movieId}`
+      );
+
+      expect(req.request.method).toEqual('DELETE');
+
+      req.flush(deletedMovie);
     });
   });
 });

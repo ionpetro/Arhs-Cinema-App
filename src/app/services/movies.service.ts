@@ -9,7 +9,7 @@ import { Movie } from '../models/movie';
   providedIn: 'root',
 })
 export class MoviesService {
-  moviesUrl = environment.apiUrl;
+  moviesUrl = `${environment.apiUrl}/movies`;
   constructor(private http: HttpClient) {}
 
   getMovies(): Observable<Movie[]> {
@@ -42,8 +42,8 @@ export class MoviesService {
       if (currentMovie[prop] === movie[prop]) {
         delete movie[prop];
       }
-      return movie as Movie;
     }
+    return movie;
   }
 
   searchMovieDetails(movieName: string): Observable<string> {

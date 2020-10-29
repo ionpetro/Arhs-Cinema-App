@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './helpers/auth.guard';
 import { HomeComponent } from './core/home/home.component';
 
+// create lazy loading modules for performance issues
 const accountModule = () =>
   import('./account/account.module').then((x) => x.AccountModule);
 const profileModule = () =>

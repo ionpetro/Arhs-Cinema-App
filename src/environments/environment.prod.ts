@@ -6,5 +6,5 @@ export const environment = {
       apiKey: '5f938b38',
     },
   },
-  apiUrl: 'https://us-central1-arhs-cinema.cloudfunctions.net/app',
+  apiUrl: 'https://peaceful-harbor-49893.herokuapp.com',
 };
